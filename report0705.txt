@@ -1,0 +1,8 @@
+Báo cáo ngày 07/05
+
+- làm các bài tập cơ bản về PHP 
+    +( quản lý sinh viên)
+        * sử dụng sql
+        * sử dụng session
+    + Giải phương trình bậc nhất bậc 2 ( bai1.php bai2.php)
+    + Demo array ( bai3.php )
