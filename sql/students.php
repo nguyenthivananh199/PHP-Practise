@@ -28,6 +28,7 @@ function disconnect_db()
     }
 }
  
+
 // Hàm lấy tất cả sinh viên
 function get_all_students()
 {
@@ -84,7 +85,56 @@ function get_student($student_id)
     // Trả kết quả về
     return $result;
 }
- 
+function get_test($test_id){
+
+    global $conn;
+     
+    // Hàm kết nối
+    connect_db();
+     
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "SELECT * FROM test WHERE test_id = 1";
+     
+    // Thực hiện câu truy vấn
+    $query = mysqli_query($conn, $sql);
+     
+    // Mảng chứa kết quả
+    $result = '';
+     
+    // Nếu có kết quả thì đưa vào biến $result
+    if (mysqli_num_rows($query) > 0){
+        $row = mysqli_fetch_assoc($query);
+        $result = $row;
+        
+    }
+     
+    // Trả kết quả về
+    return $result;
+}
+function get_quest($test_id){
+
+    global $conn;
+     
+    // Hàm kết nối
+    connect_db();
+     
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "SELECT * FROM quest WHERE test_id = 1";
+     
+    $query = mysqli_query($conn, $sql);
+     
+    // Mảng chứa kết quả
+    $result = array();
+     
+    // Lặp qua từng record và đưa vào biến kết quả
+    if ($query){
+        while ($row = mysqli_fetch_assoc($query)){
+            $result[] = $row;
+        }
+    }
+     
+    // Trả kết quả về
+    return $result;}
 // Hàm thêm sinh viên
 function add_student($student_name, $student_sex, $student_birthday)
 {
