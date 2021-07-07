@@ -111,6 +111,39 @@ function get_test($test_id){
     // Trả kết quả về
     return $result;
 }
+function get_test_result($test,$chosen_ans){
+    global $conn;
+     
+    // Hàm kết nối
+    connect_db();
+     
+    // Câu truy vấn lấy tất cả sinh viên
+    $sql = "SELECT * FROM quest WHERE test_id = '".$test['test_id']."'";
+     
+    $query = mysqli_query($conn, $sql);
+     
+    // Mảng chứa kết quả
+    $correct = array();
+    $score=0;
+    // Lặp qua từng record và đưa vào biến kết quả
+    if ($query){
+        while ($row = mysqli_fetch_assoc($query)){
+            $correct[] = $row;
+        }
+    }
+    for($i=1;$i<count($chosen_ans);$i++){
+        if($chosen_ans[$i]==$correct[$i-1]['correct']){
+            $score+=1;
+        }
+    }
+    //echo $score;
+    header('Location: test-result.php?score='.$score);
+
+
+     
+    // Trả kết quả về
+    //return $result;
+}
 function get_quest($test_id){
 
     global $conn;
