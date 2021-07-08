@@ -85,6 +85,41 @@ function get_student($student_id)
     // Trả kết quả về
     return $result;
 }
+function add_test($newtest){
+    // insert test
+    global $conn;
+     
+    // Hàm kết nối
+    connect_db();
+     
+    // Chống SQL Injection
+    $testname=$newtest[0];
+    // Câu truy vấn thêm
+    $sql = "
+            INSERT INTO test(test_name) VALUES
+            ('$testname')
+    ";
+     
+    // Thực hiện câu truy vấn
+   // $query = mysqli_query($conn, $sql);
+     
+    // get last id
+    $sql1="SELECT test_id FROM test ORDER BY test_id DESC LIMIT 1";
+
+    $query1 = mysqli_query($conn, $sql1);
+    // Nếu có kết quả thì đưa vào biến $result
+
+        $row = mysqli_fetch_assoc($query1);
+        
+    
+    //echo $row['test_id'];
+    // insert to quest tables
+    
+    $sql = "
+            INSERT INTO quest(test_id, question, ans1, ans2, ans3, ans4, correct) VALUES
+            ('$student_name','$student_sex','$student_birthday')
+    ";
+}
 function get_test($test_id){
 
     global $conn;
@@ -144,6 +179,7 @@ function get_test_result($test,$chosen_ans){
     // Trả kết quả về
     //return $result;
 }
+
 function get_quest($test_id){
 
     global $conn;
